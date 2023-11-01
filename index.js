@@ -26,6 +26,8 @@ async function run() {
     await client.connect();
 
     const serviceCollection = client.db('module-59-carDoctor').collection('services');
+    // নতুন কালেকসন কিরিয়েট
+    const bookingCollection = client.db('carDoctor').collection('bookings');
 
     app.get('/services', async (req, res) => {
       const cursor = serviceCollection.find();
@@ -44,6 +46,11 @@ async function run() {
 
       const result = await serviceCollection.findOne(query, options);
       res.send(result);
+    })
+
+    // বুকিং কালেকসন অপারেশন
+    app.post('/bookings', async(req, res) => {
+      const booking = req.body;
     })
 
     // Send a ping to confirm a successful connection
